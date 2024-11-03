@@ -9,6 +9,25 @@ def hello_world():
 
 @app.route('/db_test')
 def testing():
-    conn = psycopg2.connect("Hello_WorldDB")
+    conn = psycopg2.connect("postgresql://helloworlddb_fv6l_user:NkUYNSrQaEvMx9HYMV81udB0W1cpuADf@dpg-csjupddsvqrc73f0q91g-a/helloworlddb_fv6l")
     conn.close()
     return "Database Connection Successful"
+
+@app.route('db_create')
+def db_create():
+    conn = psycopg2.connect("postgresql://helloworlddb_fv6l_user:NkUYNSrQaEvMx9HYMV81udB0W1cpuADf@dpg-csjupddsvqrc73f0q91g-a/helloworlddb_fv6l")
+    cur = conn.cursor()
+    cur.execute(
+        '''
+        CREATE TABLE IF NOT EXISTS Basketball(
+        First varchar(255),
+        Last varchar(255),
+        City varchar(255),
+        Name varchar(255),
+        Number int
+        );
+        '''
+    )
+    conn.commit()
+    conn.close()
+    return "Basketball Table Successfully Created"
