@@ -60,7 +60,7 @@ def db_select():
     cur = conn.cursor()
     cur.execute(
         '''
-        SELECT * Basketball;
+        SELECT * FROM Basketball;
         '''
     )
     records = cur.fetchall()
